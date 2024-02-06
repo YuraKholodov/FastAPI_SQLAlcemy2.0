@@ -17,11 +17,6 @@ class Product(Base):
     description: Mapped[str]
     price: Mapped[int]
 
-    # orders: Mapped["Order"] = relationship(
-    #     secondary="order_product_association",
-    #     back_populates="products",
-    # )
-
     orders_details: Mapped[list["OrderProductAssociation"]] = relationship(
         back_populates="product",
     )

@@ -221,25 +221,25 @@ async def create_orders_and_products(session: AsyncSession):
     await session.commit()
 
 
-async def get_orders_with_products(session: AsyncSession) -> list[Order]:
-    stmt = (
-        select(Order)
-        .options(
-            selectinload(Order.products),
-        )
-        .order_by(Order.id)
-    )
-    orders = await session.scalars(stmt)
+# async def get_orders_with_products(session: AsyncSession) -> list[Order]:
+#     stmt = (
+#         select(Order)
+#         .options(
+#             selectinload(Order.products),
+#         )
+#         .order_by(Order.id)
+#     )
+#     orders = await session.scalars(stmt)
+#
+#     return list(orders)
 
-    return list(orders)
 
-
-async def demo_get_orders_with_products_through_secondary(session: AsyncSession):
-    orders = await get_orders_with_products(session)
-    for order in orders:
-        print(order.id, order.promocode, order.created_at, "products:")
-        for product in order.products:  # type: Product
-            print("-", product.id, product.name, product.price)
+# async def demo_get_orders_with_products_through_secondary(session: AsyncSession):
+#     orders = await get_orders_with_products(session)
+#     for order in orders:
+#         print(order.id, order.promocode, order.created_at, "products:")
+#         for product in order.products_details:  # type: Product
+#             print("-", product.id, product.name, product.price)
 
 
 async def get_orders_with_products_assoc(session: AsyncSession) -> list[Order]:

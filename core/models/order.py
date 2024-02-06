@@ -21,11 +21,6 @@ class Order(Base):
         default=datetime.utcnow,
     )
 
-    # products: Mapped[list["Product"]] = relationship(
-    #     secondary="order_product_association",
-    #     back_populates="orders",
-    # )
-
     products_details: Mapped[list["OrderProductAssociation"]] = relationship(
         back_populates="order"
     )
