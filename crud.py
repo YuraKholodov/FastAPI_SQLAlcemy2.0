@@ -246,9 +246,7 @@ async def get_orders_with_products_assoc(session: AsyncSession) -> list[Order]:
     stmt = (
         select(Order)
         .options(
-            selectinload(Order.products_details).joinedload(
-                OrderProductAssociation.product
-            ),
+            selectinload(Order.products_details).joinedload(OrderProductAssociation.product)
         )
         .order_by(Order.id)
     )
@@ -334,10 +332,10 @@ async def main_relations(session: AsyncSession):
 
 
 async def demo_m2m(session: AsyncSession):
-    await create_orders_and_products(session)
-    await demo_get_orders_with_products_through_secondary(session)
+    # await create_orders_and_products(session)
+    # await demo_get_orders_with_products_through_secondary(session)
     await demo_get_orders_with_products_with_assoc(session)
-    await create_gift_product_for_existing_orders(session)
+    # await create_gift_product_for_existing_orders(session)
 
 
 async def main():
